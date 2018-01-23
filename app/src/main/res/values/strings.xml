@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tarea3</string>
+    <string name="title_activity_mapa">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="ApiIconSet">http://openweathermap.org/img/w/</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

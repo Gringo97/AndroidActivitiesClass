@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ValuesStyles</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="bntOk">OK</string>
+    <string name="btnCancel1">Cancel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
