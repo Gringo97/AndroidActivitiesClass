@@ -15,7 +15,6 @@ public class AlumnoViewHolder extends RecyclerView.ViewHolder {
     public TextView txtNombre,txtApellido,txtTelefono,txtDni,txtNacionalidad,txtTitulacion;
 
 
-
     public AlumnoViewHolder(View itemView) {
         super(itemView);
         txtNombre = itemView.findViewById(R.id.txtNombreAlumno);

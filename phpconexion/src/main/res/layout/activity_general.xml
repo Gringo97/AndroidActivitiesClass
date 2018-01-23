@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragmentListAlumnos"
-        android:name="utad.phpconexion.ListFragment"
+        android:name="utad.phpconexion.Adapter.ListFragment"
         android:layout_width="0dp"
         android:layout_height="295dp"
         android:layout_marginBottom="8dp"

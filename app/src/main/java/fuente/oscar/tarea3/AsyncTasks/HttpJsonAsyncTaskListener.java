@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
  */
 
 public interface HttpJsonAsyncTaskListener {
-    public void weatherCambio(String lat, String lon);
-    public void weatherIcon(Bitmap icon);
-    public void weatherTempHumedad(Double temperatura,String humedad);
+    void weatherCambio(String lat, String lon);
+    void weatherIcon(Bitmap icon);
+    void weatherTempHumedad(Double temperatura,String humedad);
 }

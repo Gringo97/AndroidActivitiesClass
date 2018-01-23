@@ -43,8 +43,6 @@ public class DownloadImgAsyncTask  extends AsyncTask<String,Integer,String> {
     }
 
 
-
-
     @Override
     protected String doInBackground(String... urls) {
 
@@ -96,8 +94,6 @@ public class DownloadImgAsyncTask  extends AsyncTask<String,Integer,String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         String icon;
-
-
         if (s != null) {
             try{
                 JSONObject jsonObj = new JSONObject(s);

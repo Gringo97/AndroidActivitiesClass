@@ -12,8 +12,6 @@ import java.util.List;
 public class DataHolder {
 
     public static  DataHolder instance = new DataHolder();
-
-    public HashMap<String,Object> alumnos;
     public ArrayList<Alumno> alumnosList;
 
 

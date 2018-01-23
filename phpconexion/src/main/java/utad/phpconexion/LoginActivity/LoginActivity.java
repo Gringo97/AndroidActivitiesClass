@@ -1,9 +1,8 @@
-package utad.phpconexion;
+package utad.phpconexion.LoginActivity;
 
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,8 +19,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
+import utad.phpconexion.Alumno;
+import utad.phpconexion.DataHolder;
+import utad.phpconexion.GeneralActivity;
+import utad.phpconexion.R;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -55,23 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 
 }
 
-/*  GenericTypeIndicator<Map<String,Ensalada>> indicator = new GenericTypeIndicator<Map<String,Ensalada>>(){};
-            generalActivity.ensaladas = dataSnapshot.getValue(indicator);
-            //Crepes crepes = dataSnapshot.getValue(Crepes.class);
-            Log.v("--->","ENSALADAS CONTIENE"+ generalActivity.ensaladas);
-
-            generalActivity.listEnsaladaAdapter = new ListEnsaladAdapter(new ArrayList<Ensalada>(generalActivity.ensaladas.values()),generalActivity);
-            generalActivity.listFragmentEnsalada.recyclerView.setAdapter(generalActivity.listEnsaladaAdapter);
-            generalActivity.listEnsaladaAdapter.setListener(this);
-            agregarPinesEnsalada();
-
-
-            android.support.v4.app.FragmentTransaction transaction = generalActivity.getSupportFragmentManager().beginTransaction();
-            transaction.remove(generalActivity.listFragmentCrepe);
-            transaction.commit();
-
-*/
-
 
 class AsyncLogin extends AsyncTask<String, String, String> {
     LoginActivity loginActivity;
@@ -101,14 +86,13 @@ class AsyncLogin extends AsyncTask<String, String, String> {
         String inputLine;
         try {
             //Create a URL object holding our url
-
             URL myUrl = new URL("http://10.0.2.2/AD_UD3_A03_Cliente_WEB/php/leerAlumnos.php?username= "+loginActivity.etEmail.getText()+"& password="+loginActivity.etPassword.getText());
             //Create a connection
             HttpURLConnection connection = (HttpURLConnection)
                     myUrl.openConnection();
 
             //Set methods and timeouts
-            connection.setRequestMethod("GET");
+            connection.setRequestMethod(REQUEST_METHOD);
             connection.setReadTimeout(READ_TIMEOUT);
             connection.setConnectTimeout(CONNECTION_TIMEOUT);
 
@@ -141,12 +125,15 @@ class AsyncLogin extends AsyncTask<String, String, String> {
     }
 
 
-
+//ACCION POSTERIOR AL METODO PROPIO DE ASYNCTASK CON LA INFORMACION SOBRE EL LOGIN
+// Y CON LA INFORMACION DEVUELTA SI HA SIDO CORRECTO.
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+
+        //ATRIBUTOS DEL OBJETO ALUMNO
         String dni,nombre,apellido,telefono,nacionalidad,titulacion,cod;
-        Log.v("JSONALUMNOSRESPUESTA",s.toString());
+        Log.v("JsonAlumnoSRespuestaPHP",s.toString());
 
         try {
             //PASAMOS EL STRING DEVUELTO POR EL PHP A UN OBJETO JSON
@@ -154,29 +141,29 @@ class AsyncLogin extends AsyncTask<String, String, String> {
             //SELECCIONAMO S EL ARRAY QUE QUEREMOS RECORRER
             JSONArray jArrAlumnos= jsonObject.getJSONArray("Alumnos");
 
-
-
+            //INICIALIZAMOS EL ARRAYLIST DE ALUMNOS PARA DESPUES MOSTRARLO
+            //EN LA SIGUIENTE ACTIVITY
             DataHolder.instance.alumnosList = new ArrayList<>();
+
+
             for (int i = 0;i<jArrAlumnos.length();i++){
+
                 cod =jArrAlumnos.getJSONObject(i).get("cod").toString();
-               dni =  jArrAlumnos.getJSONObject(i).get("dni").toString();
-               nombre = jArrAlumnos.getJSONObject(i).get("nombre").toString();
-               apellido =  jArrAlumnos.getJSONObject(i).get("apellido").toString();
-               telefono =  jArrAlumnos.getJSONObject(i).get("telefono").toString();
-               nacionalidad =  jArrAlumnos.getJSONObject(i).get("nacionalidad").toString();
-               titulacion =  jArrAlumnos.getJSONObject(i).get("titulacion").toString();
+                dni =  jArrAlumnos.getJSONObject(i).get("dni").toString();
+                nombre = jArrAlumnos.getJSONObject(i).get("nombre").toString();
+                apellido =  jArrAlumnos.getJSONObject(i).get("apellido").toString();
+                telefono =  jArrAlumnos.getJSONObject(i).get("telefono").toString();
+                nacionalidad =  jArrAlumnos.getJSONObject(i).get("nacionalidad").toString();
+                titulacion =  jArrAlumnos.getJSONObject(i).get("titulacion").toString();
 
-               //CREACION DEL ALUMNO CON LOS
-               Alumno alumnoNuevo = new Alumno(cod,dni,nombre,apellido,telefono,nacionalidad,titulacion);
-               Log.v("OBJETO ALUMNO",alumnoNuevo.apellido+" "+alumnoNuevo.titulacion+" "+alumnoNuevo.nombre+" "+alumnoNuevo.telefono+" ");
-               DataHolder.instance.alumnosList.add(alumnoNuevo);
-              // DataHolder.instance.alumnos.put(String.valueOf(i),alumnoNuevo);
-
-
-
+                //CREACION DEL ALUMNO CON LOS VALORES DE CADA UNO DE ELLOS
+                Alumno alumnoNuevo = new Alumno(cod,dni,nombre,apellido,telefono,nacionalidad,titulacion);
+                Log.v("OBJETO ALUMNO",alumnoNuevo.apellido+" "+alumnoNuevo.titulacion+" "+alumnoNuevo.nombre+" "+alumnoNuevo.telefono+" ");
+                //AÑADIMOS EL ALUMNO A LA LISTA
+                DataHolder.instance.alumnosList.add(alumnoNuevo);
             }
 
-
+            //INICIALIZAMOS EL ACTIVITY POSTERIOR AL LOGIN REALIZADO EN EL PHP
             Intent intent = new Intent(loginActivity, GeneralActivity.class);
             loginActivity.startActivity(intent);
             loginActivity.finish();
@@ -190,4 +177,4 @@ class AsyncLogin extends AsyncTask<String, String, String> {
     }
 
 
-    }
+}
