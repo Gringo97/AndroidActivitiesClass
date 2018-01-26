@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Tarea3AndroidresNecxo-master.iml" filepath="$PROJECT_DIR$/Tarea3AndroidresNecxo-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/facebooktwittersdk/facebooktwittersdk.iml" filepath="$PROJECT_DIR$/facebooktwittersdk/facebooktwittersdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/milib/milib.iml" filepath="$PROJECT_DIR$/milib/milib.iml" />
       <module fileurl="file://$PROJECT_DIR$/phpconexion/phpconexion.iml" filepath="$PROJECT_DIR$/phpconexion/phpconexion.iml" />
     </modules>

@@ -90,13 +90,16 @@ public class GeneralActivity extends AppCompatActivity {
 
 
        // ........... transaction.hide(listFragmentCrepe);
-        //........... transaction.add(R.id.llcontainer1,listFragmentCrepe,"lfCrepe");
+        // ........... transaction.add(R.id.llcontainer1,listFragmentCrepe,"lfCrepe");
         //........... transaction.add(R.id.llcontainer2,listFragmentEnsalada,"lfEnsalada");
 
         transaction.commit();
         GPSTracker gpsTracker = new GPSTracker(this);
         gpsTracker.setListener(events);
         gpsTracker.getLocation();
+
+
+
         if(gpsTracker.canGetLocation()){
                 Log.v("GPSTracker",gpsTracker.getLatitude()+ "    "+ gpsTracker.getLongitude());
         }else{
