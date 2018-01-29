@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TwitterAPI</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">"RpQZcu1BcIft5WD8VtreBG23t"</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">"Tuo45YO3x0MOBpNr7AH0vAFVjA3fuHFjIFaDtdc1RacKtZmPlx"</string>
+</resources>
