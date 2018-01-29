@@ -1,1 +1,1 @@
-include ':app', ':milib', ':phpconexion', ':facebooktwittersdk', ':menu', ':facebook', ':twitterapi'
+include ':app', ':milib', ':phpconexion', ':menu', ':facebook', ':twitterapi'
