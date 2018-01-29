@@ -3,14 +3,21 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidActivitiesClass.iml" filepath="$PROJECT_DIR$/AndroidActivitiesClass.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidActivitiesClass.iml" filepath="$PROJECT_DIR$/AndroidActivitiesClass.iml" />
       <module fileurl="file://C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\Tarea3AndroidresNecxo-master.iml" filepath="C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\Tarea3AndroidresNecxo-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\app\app.iml" filepath="C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/facebook/facebook.iml" filepath="$PROJECT_DIR$/facebook/facebook.iml" />
       <module fileurl="file://$PROJECT_DIR$/facebooktwittersdk/facebooktwittersdk.iml" filepath="$PROJECT_DIR$/facebooktwittersdk/facebooktwittersdk.iml" />
       <module fileurl="file://C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\facebooktwittersdk\facebooktwittersdk.iml" filepath="C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\facebooktwittersdk\facebooktwittersdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/facebooktwittersdk/facebooktwittersdk.iml" filepath="$PROJECT_DIR$/facebooktwittersdk/facebooktwittersdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/menu/menu.iml" filepath="$PROJECT_DIR$/menu/menu.iml" />
       <module fileurl="file://$PROJECT_DIR$/menu/menu.iml" filepath="$PROJECT_DIR$/menu/menu.iml" />
       <module fileurl="file://$PROJECT_DIR$/milib/milib.iml" filepath="$PROJECT_DIR$/milib/milib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/milib/milib.iml" filepath="$PROJECT_DIR$/milib/milib.iml" />
       <module fileurl="file://C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\milib\milib.iml" filepath="C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\milib\milib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/phpconexion/phpconexion.iml" filepath="$PROJECT_DIR$/phpconexion/phpconexion.iml" />
       <module fileurl="file://$PROJECT_DIR$/phpconexion/phpconexion.iml" filepath="$PROJECT_DIR$/phpconexion/phpconexion.iml" />
       <module fileurl="file://C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\phpconexion\phpconexion.iml" filepath="C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\phpconexion\phpconexion.iml" />
     </modules>
