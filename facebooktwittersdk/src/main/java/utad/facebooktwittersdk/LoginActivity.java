@@ -15,6 +15,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginFragment facebookFragment;
         TwitterLogInFragment twitterLogInFragment;
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         facebookFragment =(LoginFragment)  getSupportFragmentManager().findFragmentById();
