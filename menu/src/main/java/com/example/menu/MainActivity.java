@@ -13,9 +13,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public   NavigationView navigationView;
+    MainActivityEvents events;
+    ImageView imageView;
+    TextView descActividad,nombreMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +34,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        events = new MainActivityEvents(this);
+        DataHolder.instance.fireBaseAdmin.setListener(this.events);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -34,14 +48,47 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
+
+      navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        this.navigationView.setNavigationItemSelectedListener(this);
+        //this.navigationView = (NavigationView) this.findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        this.imageView =  headerView.findViewById(R.id.imgPerfilMenu);
+        this.nombreMenu = (TextView) headerView.findViewById(R.id.txtxNameMenu);
+        this.descActividad = (TextView) headerView.findViewById(R.id.txtActividadDescrip);
+
+
+        setDatos();
+
+
+    }
+
+    public void setDatos(){
+        try {
+            Log.v("Entrada set Dats",""+DataHolder.instance.fireBaseAdmin.mAuth.getUid());
+            DataHolder.instance.fireBaseAdmin.downloadAndObserveBranch("Perfiles/"+DataHolder.instance.fireBaseAdmin.mAuth.getUid());
+
+            this.descActividad.setText(DataHolder.instance.fireBaseAdmin.mAuth.getCurrentUser().getEmail());
+            StorageReference storageReference = DataHolder.instance.fireBaseAdmin.pathReference.child(DataHolder.instance.fireBaseAdmin.mAuth.getUid()).child("imgPerfil.jpg");
+            Glide.with(this /* context */)
+                    .using(new FirebaseImageLoader())
+                    .load(storageReference)
+                    .into(this.imageView);
+
+            this.nombreMenu.setText(DataHolder.instance.username);
+        }catch (Exception e){
+           Log.v(" error imagen",""+e.toString());
+        }
+
     }
 
     @Override
@@ -106,6 +153,41 @@ public class MainActivity extends AppCompatActivity
     }
     public void onClickButton2 (View v){
         Log.v("MANUE","ESTAS PULSANDO EL BOTON MANUE");
+
+    }
+}class MainActivityEvents implements  FireBaseAdminListener{
+    MainActivity mainActivity;
+
+    public MainActivityEvents(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
+
+    @Override
+    public void fireBaseAdminRegisterOK(Boolean blOk) {
+
+    }
+
+    @Override
+    public void fireBaseAdminLoginOk(Boolean blOk) {
+
+    }
+
+    @Override
+    public void fireBaseAdminbranchDownload(String branch, DataSnapshot dataSnapshot) {
+        if (dataSnapshot!=null){
+            if(branch == "Perfiles/"+DataHolder.instance.fireBaseAdmin.mAuth.getUid()){
+                Users user= dataSnapshot.getValue(Users.class);
+                DataHolder.instance.username = user.nombre.toString();
+            }
+        }else {
+            Log.v("DataSnapshot null","");
+        }
+
+    Log.v("RESULTADO RAMA",""+branch+""+dataSnapshot.toString());
+    }
+
+    @Override
+    public void fireBaseImageDownload() {
 
     }
 }

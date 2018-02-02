@@ -45,12 +45,12 @@ public class MainActivityFacebook extends AppCompatActivity {
         // If you are using in a fragment, call loginButton.setFragment(this);
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            //Se llama si se ha realizado el logueo correctamente
+
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
 
-                //Mediante la API GraphRequest podemos realizar solicitudes para devolver un JSONObject asociado al usuario logueada que contiene toda su información
+
                 GraphRequest request = GraphRequest.newMeRequest(
                         AccessToken.getCurrentAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
@@ -59,7 +59,7 @@ public class MainActivityFacebook extends AppCompatActivity {
                                     JSONObject object,
                                     GraphResponse response) {
                                 System.out.println("---------->El objeto devuelto por facebook es: " + object);
-                                //JSONObject para almacenar los datos del json que nos devuelve facebook al loguearnos con todos los datos del usuario
+
                                 DataHolder.instance.jsonObject = object;
                                 Intent intent = new Intent(getBaseContext(),SecondActivity.class);
                                 startActivity(intent);
@@ -68,7 +68,6 @@ public class MainActivityFacebook extends AppCompatActivity {
                             }
                         });
                 Bundle parameters = new Bundle();
-                //Con el parámetro fields especificamos los campos que queremos que nos devuelva el json de facebook
                 parameters.putString("fields", "id,name,link,picture,birthday,email");
                 request.setParameters(parameters);
                 request.executeAsync();

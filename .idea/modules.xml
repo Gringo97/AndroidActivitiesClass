@@ -14,6 +14,7 @@
       <module fileurl="file://C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\milib\milib.iml" filepath="C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\milib\milib.iml" />
       <module fileurl="file://$PROJECT_DIR$/phpconexion/phpconexion.iml" filepath="$PROJECT_DIR$/phpconexion/phpconexion.iml" />
       <module fileurl="file://C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\phpconexion\phpconexion.iml" filepath="C:\Users\manuel.blanco\AndroidStudioProjects\AndroidActivitiesClass\phpconexion\phpconexion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pushnotification/pushnotification.iml" filepath="$PROJECT_DIR$/pushnotification/pushnotification.iml" />
       <module fileurl="file://$PROJECT_DIR$/twitterapi/twitterapi.iml" filepath="$PROJECT_DIR$/twitterapi/twitterapi.iml" />
     </modules>
   </component>

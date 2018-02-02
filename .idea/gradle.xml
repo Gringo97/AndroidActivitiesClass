@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/menu" />
             <option value="$PROJECT_DIR$/milib" />
             <option value="$PROJECT_DIR$/phpconexion" />
+            <option value="$PROJECT_DIR$/pushnotification" />
             <option value="$PROJECT_DIR$/twitterapi" />
           </set>
         </option>
