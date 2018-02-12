@@ -45,6 +45,12 @@ public class LoginRegisterActivity extends AppCompatActivity {
         registerFragment.setListener(this.events);
         DataHolder.instance.fireBaseAdmin.setListener(this.events);
 
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.show(loginFragment);
+        transaction.hide(registerFragment);
+        //Execution
+        transaction.commit();
+
 
     }
 }

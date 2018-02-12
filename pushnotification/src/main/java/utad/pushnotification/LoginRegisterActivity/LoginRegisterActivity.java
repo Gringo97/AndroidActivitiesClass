@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -17,8 +18,10 @@ import fuente.oscar.milib.fragments.Register.RegisterFragmentListener;
 
 import utad.pushnotification.DataHolder;
 import utad.pushnotification.FireBase.FireBaseAdminListener;
-import utad.pushnotification.MainActivity;
+import utad.pushnotification.GeneralActivity;
 import utad.pushnotification.R;
+import utad.pushnotification.SQLite.Contact;
+import utad.pushnotification.SQLite.DatabaseHandler;
 
 public class LoginRegisterActivity extends AppCompatActivity {
 
@@ -34,7 +37,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
-
+        Log.v("TOKEN MI MOVIL"," entrada");
 
     //Igualamos el id del fragment.xml a la variable local
         this.loginFragment = (LoginFragment) getSupportFragmentManager().findFragmentById(R.id.LoginFragment);
@@ -49,11 +52,15 @@ public class LoginRegisterActivity extends AppCompatActivity {
         DataHolder.instance.fireBaseAdmin.setListener(this.events);
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.v("TOKEN MI MOVIL"," "+refreshedToken);
+
+        Log.v("TOKEN MI MOVIL"," "+refreshedToken);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.show(loginFragment);
         transaction.hide(registerFragment);
         //Execution
         transaction.commit();
+
+
 
 
     }
@@ -94,6 +101,7 @@ class LoginRegisterActivityEvents implements LoginFragmentListener,RegisterFragm
     //Button para registrarte
     @Override
     public void RegisterAcceptButtonClicked(String user, String password) {
+        FirebaseCrash.report(new Exception("FireBase Register Correct"));
         DataHolder.instance.fireBaseAdmin.registerNewUserWithEmailPassword(user,password,loginRegisterActivity);
     }
 
@@ -114,8 +122,9 @@ class LoginRegisterActivityEvents implements LoginFragmentListener,RegisterFragm
     @Override
     public void fireBaseAdminRegisterOK(Boolean blOk) {
         Log.v("-------->","RESULT OF REGISTER"+blOk);
+        FirebaseCrash.report(new Exception("FireBase Login Correct"));
         if(blOk){
-            Intent intent = new Intent(loginRegisterActivity, MainActivity.class);
+            Intent intent = new Intent(loginRegisterActivity, GeneralActivity.class);
 
             loginRegisterActivity.startActivity(intent);
             loginRegisterActivity.finish();
@@ -127,7 +136,7 @@ class LoginRegisterActivityEvents implements LoginFragmentListener,RegisterFragm
     public void fireBaseAdminLoginOk(Boolean blOk) {
         Log.v("-------->","RESULT OF LOGIN"+blOk);
         if(blOk){
-            Intent intent = new Intent(loginRegisterActivity, MainActivity.class);
+            Intent intent = new Intent(loginRegisterActivity, GeneralActivity.class);
             loginRegisterActivity.startActivity(intent);
             loginRegisterActivity.finish();
         }

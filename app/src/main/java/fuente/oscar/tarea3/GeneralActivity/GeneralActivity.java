@@ -85,13 +85,13 @@ public class GeneralActivity extends AppCompatActivity {
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.hide(listFragmentEnsalada);
         transaction.hide(mapDetailFragment);
-        transaction.show(mapFragment);
-        transaction.show(weatherDetailsFragment);
+        transaction.hide(mapFragment);
+        transaction.hide(weatherDetailsFragment);
 
 
-       // ........... transaction.hide(listFragmentCrepe);
+        transaction.show(listFragmentCrepe);
         // ........... transaction.add(R.id.llcontainer1,listFragmentCrepe,"lfCrepe");
-        //........... transaction.add(R.id.llcontainer2,listFragmentEnsalada,"lfEnsalada");
+        //transaction.add(R.id.llcontainer2,listFragmentEnsalada,"lfEnsalada");
 
         transaction.commit();
         GPSTracker gpsTracker = new GPSTracker(this);
@@ -119,7 +119,7 @@ public class GeneralActivity extends AppCompatActivity {
         downloadImgAsyncTask.execute(url);
 
 
-   // DataHolder.instance.fireBaseAdmin.downloadAndObserveBranch("Crepes");
+    DataHolder.instance.fireBaseAdmin.downloadAndObserveBranch("Crepes");
 
        // Log.v("SECONDACTIVITY-->","Email User: "+DataHolder.instance.fireBaseAdmin.user.getEmail());
 

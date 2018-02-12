@@ -88,7 +88,7 @@ public class FireBaseAdmin {
     }
 
     public void downloadAndObserveBranch(final String branch){
-        DatabaseReference refBranch = myRefRoot.child(branch);
+        DatabaseReference refBranch = myRefPerfiles.child(branch);
         refBranch.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

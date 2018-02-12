@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public   NavigationView navigationView;
     MainActivityEvents events;
-    ImageView imageView;
+    ImageView imagenPerfil;
     TextView descActividad,nombreMenu;
 
     @Override
@@ -54,17 +54,30 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+/*
+NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+View headerView = navigationView.getHeaderView(0);
+navUsername = (TextView) headerView.findViewById(R.id.navUsername);
+navUsernam.setText("Your Text Here");
 
 
+
+navHeaderView= navigationView.inflateHeaderView(R.layout.nav_header_main);
+tvHeaderName= (TextView) navHeaderView.findViewById(R.id.tvHeaderName);
+tvHeaderName.setText("Saly");
+ */
 
       navigationView = (NavigationView) findViewById(R.id.nav_view);
-
+     View   navHeaderView= navigationView.inflateHeaderView(R.layout.nav_header_main);
+     navHeaderView.findViewById(R.id.layoutLinearHeader);
         this.navigationView.setNavigationItemSelectedListener(this);
         //this.navigationView = (NavigationView) this.findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
-        this.imageView =  headerView.findViewById(R.id.imgPerfilMenu);
-        this.nombreMenu = (TextView) headerView.findViewById(R.id.txtxNameMenu);
-        this.descActividad = (TextView) headerView.findViewById(R.id.txtActividadDescrip);
+
+        this.imagenPerfil =  navHeaderView.findViewById(R.id.imgPerfilMenu);
+        this.nombreMenu = (TextView) navHeaderView.findViewById(R.id.txtxNameMenu);
+        this.descActividad = (TextView) navHeaderView.findViewById(R.id.txtActividadDescrip);
+
+        Log.v("TextFieldEmail",this.descActividad.toString());
 
 
         setDatos();
@@ -76,15 +89,16 @@ public class MainActivity extends AppCompatActivity
         try {
             Log.v("Entrada set Dats",""+DataHolder.instance.fireBaseAdmin.mAuth.getUid());
             DataHolder.instance.fireBaseAdmin.downloadAndObserveBranch("Perfiles/"+DataHolder.instance.fireBaseAdmin.mAuth.getUid());
-
-            this.descActividad.setText(DataHolder.instance.fireBaseAdmin.mAuth.getCurrentUser().getEmail());
+            nombreMenu.setText(DataHolder.instance.fireBaseAdmin.mAuth.getCurrentUser().getPhoneNumber());
+            descActividad.setText(DataHolder.instance.fireBaseAdmin.mAuth.getCurrentUser().getEmail());
             StorageReference storageReference = DataHolder.instance.fireBaseAdmin.pathReference.child(DataHolder.instance.fireBaseAdmin.mAuth.getUid()).child("imgPerfil.jpg");
             Glide.with(this /* context */)
                     .using(new FirebaseImageLoader())
                     .load(storageReference)
-                    .into(this.imageView);
+                    .override(100, 200)
+                    .into(this.imagenPerfil);
 
-            this.nombreMenu.setText(DataHolder.instance.username);
+
         }catch (Exception e){
            Log.v(" error imagen",""+e.toString());
         }

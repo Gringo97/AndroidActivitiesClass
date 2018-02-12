@@ -105,6 +105,7 @@ public class FireBaseAdmin {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Log.v("datos descarga"," "+dataSnapshot.toString());
+
                 listener.fireBaseAdminbranchDownload(branch,dataSnapshot);
             }
 
