@@ -27,10 +27,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
 
     //Fragments
-        LoginFragment loginFragment;
-        RegisterFragment registerFragment;
+    LoginFragment loginFragment;
+    RegisterFragment registerFragment;
     //EventsActivity
-        LoginRegisterActivityEvents events;
+    LoginRegisterActivityEvents events;
 
 
     @Override
@@ -39,14 +39,14 @@ public class LoginRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_register);
         Log.v("TOKEN MI MOVIL"," entrada");
 
-    //Igualamos el id del fragment.xml a la variable local
+        //Igualamos el id del fragment.xml a la variable local
         this.loginFragment = (LoginFragment) getSupportFragmentManager().findFragmentById(R.id.LoginFragment);
         this.registerFragment = (RegisterFragment) getSupportFragmentManager().findFragmentById(R.id.RegisterFragment);
 
-    //Inicializamos el Events de la propia Activity
+        //Inicializamos el Events de la propia Activity
         events = new LoginRegisterActivityEvents(this);
 
-    //El Events del Activity va a escuchar a loginFragment, registerFragment y al fireBaseAdmin
+        //El Events del Activity va a escuchar a loginFragment, registerFragment y al fireBaseAdmin
         loginFragment.setListener(this.events);
         registerFragment.setListener(this.events);
         DataHolder.instance.fireBaseAdmin.setListener(this.events);
@@ -73,7 +73,7 @@ class LoginRegisterActivityEvents implements LoginFragmentListener,RegisterFragm
     //Variable para poder hacer referencia a la activity declarada
 
 
-//LOGINFRAGMENTLISTENER
+    //LOGINFRAGMENTLISTENER
     LoginRegisterActivity loginRegisterActivity;
     public  LoginRegisterActivityEvents(LoginRegisterActivity activity){
         loginRegisterActivity = activity;
@@ -89,7 +89,7 @@ class LoginRegisterActivityEvents implements LoginFragmentListener,RegisterFragm
     @Override
     public void RegisterButtonClicked() {
         //Transaction
-       FragmentTransaction transaction = loginRegisterActivity.getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = loginRegisterActivity.getSupportFragmentManager().beginTransaction();
         transaction.hide(loginRegisterActivity.loginFragment);
         transaction.show(loginRegisterActivity.registerFragment);
         //Execution
